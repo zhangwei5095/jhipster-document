@@ -14,32 +14,32 @@ sitemap:
 
 <h2>介绍</h2>
 <p>
-    当你创建完一个应用后，你会想创建 <i>entities</i>。举个例子，如果你像创建一个 <i>Author</i> 和一个 <i>Book</i> 实体对象。对于每个实体，你需要：
+    当你创建完一个应用后，你会想创建 <i>entities</i>。举个例子，如果你想创建一个 <i>Author</i> 和一个 <i>Book</i> 实体对象。对于每个实体，你需要：
 </p>
 <ul>
-    <li>一个数据库表A database table</li>
-    <li>在 liquibase 记录数据库变更</li>
-    <li>一个 JPA 实体</li>
-    <li>一个 Spring Data JPA Repository</li>
-    <li>一个 Spring MVC REST Controller 包含了 CRUD 基本的操作</li>
-    <li>前端 AngularJS 路由，包括一个 Controller 和一个 Service</li>
-    <li>HTML 视图</li>
-    <li>整合测试，验证一切是否达到预期</li>
-    <li>性能测试，查看一切是否顺利进行</li>
+    <li>一个数据库表。</li>
+    <li>在 liquibase 记录数据库变更。</li>
+    <li>一个 JPA 实体。</li>
+    <li>一个 Spring Data JPA Repository。</li>
+    <li>一个 Spring MVC REST Controller ，包含了 CRUD 基本的操作。</li>
+    <li>前端 AngularJS 路由，包括一个 Controller 和一个 Service。</li>
+    <li>HTML 视图。</li>
+    <li>整合测试，验证一切是否达到预期。</li>
+    <li>性能测试，查看一切是否顺利进行。</li>
 </ul>
 <p>
     如果你有多个实体对象，你可能要在它们之间生成映射关系。对此，你需要：
 </p>
 <ul>
-    <li>建立数据表外键</li>
-    <li>编写特定的 JavaScript 和 HTML 代码去处理它们的关系</li>
+    <li>建立数据表外键。</li>
+    <li>编写特定的 JavaScript 和 HTML 代码去处理它们的关系。</li>
 </ul>
 <p>
-    "entity" sub-generator 可以创建上面所需的全部文件，生成的前端代码，为每一个实体提供基本的 CRUD 操作（点此查看 <a href="{{ site.url }}/using-angularjs/">项目结构</a>）。sub generator  可以通过命令 <code>yo jhipster:entity &lt;entityName&gt; --[options]</code> 来运行。你可以通过<code>yo jhipster:entity --help</code> 来查看相应的帮助选项。
+    entity sub-generator 可以创建上面所需的全部文件，生成的前端代码，为每一个实体提供基本的 CRUD 操作（点此查看 <a href="{{ site.url }}/using-angularjs/">项目结构</a>）。sub generator  可以通过命令 <code>yo jhipster:entity &lt;entityName&gt; --[options]</code> 来运行。你可以通过<code>yo jhipster:entity --help</code> 来查看相应的帮助选项。
 </p>
 <p>下面是支持的选项：
     <ul>
-        <li><code>--table-name &lt;table_name&gt;</code> - 默认 JHipster 会生成和实体一样的数据库表，你可以通过这个命令来定制你的表名。</li>
+        <li><code>--table-name &lt;table_name&gt;</code> - 默认 JHipster 会生成名称和实体一样的数据库表，你可以通过这个命令来定制你的表名。</li>
         <li><code>--angular-suffix &lt;suffix&gt;</code> - 如果你想你的 AngularJS 路由有自定义的前缀，你可以用这个选项来实现。</li>
         <li><code>--regenerate</code> - 这个选项允许你对现有的实体类进行操作。</li>
         <li><code>--skip-server</code> - 加上这个选项则仅生成客户端代码。</li>
@@ -62,8 +62,8 @@ sitemap:
 
 <p>如果你使用 JDL Studio:
     <ul>
-        <li>你可以通过 JDL 文件来生成实体，使用  <code>import-jdl</code> sub-generator，通过运行 <code>yo jhipster:import-jdl your-jdl-file.jh</code>.</li>
-        <li>如果你像通过 JHipster UML 替代 the <code>import-jdl</code> sub-generator, 你需要通过运行 <code>npm install -g jhipster-uml</code> 命令来安装 jhipster-uml，然后运行 <code>jhipster-uml yourFileName.jh</code>.</li>
+        <li>你可以通过 JDL 文件来生成实体，使用  <code>import-jdl</code> sub-generator，通过运行 <code>yo jhipster:import-jdl your-jdl-file.jh</code>。</li>
+        <li>如果你像通过 JHipster UML 替代 the <code>import-jdl</code> sub-generator, 你需要通过运行 <code>npm install -g jhipster-uml</code> 命令来安装 jhipster-uml，然后运行 <code>jhipster-uml yourFileName.jh</code>。</li>
     </ul>
 </p>
 
@@ -78,8 +78,8 @@ sitemap:
 
 <p>
     <ul>
-        <li>你不能使用 Java 的保留关键字（因为你的代码不能编译通过）</li>
-        <li>你不能使用 Mysql 的保留关键字（你更新数据库的时候会失败）</li>
+        <li>你不能使用 Java 的保留关键字（因为你的代码不能编译通过）。</li>
+        <li>你不能使用 Mysql 的保留关键字（你更新数据库的时候会失败）。</li>
     </ul>
 </p>
 
@@ -110,22 +110,22 @@ sitemap:
 <p>
     校验的代码会自动生成在：
     <ul>
-        <li>HTML 视图代码中，使用 <a href="https://docs.angularjs.org/guide/forms" target="_blank">AngularJS validation mechanism</a></li>
-        <li>Java domain 对象中，使用 <a href="http://beanvalidation.org/" target="_blank">Bean Validation</a></li>
+        <li>HTML 视图代码中，使用 <a href="https://docs.angularjs.org/guide/forms" target="_blank">AngularJS validation mechanism</a>。</li>
+        <li>Java domain 对象中，使用 <a href="http://beanvalidation.org/" target="_blank">Bean Validation。</a></li>
     </ul>
 </p>
 <p>
     在下面几种情况，Bean validation 将会被自动用来校验 domain 对象：
     <ul>
-        <li>Spring MVC REST controllers （使用 <code>@Valid</code> 注解）</li>
-        <li>Hibernate/JPA （实体对象在存储前将会被自动验证）</li>
+        <li>Spring MVC REST controllers （使用 <code>@Valid</code> 注解）。</li>
+        <li>Hibernate/JPA （实体对象在存储前将会被自动验证）。</li>
     </ul>
 </p>
 <p>
     验证信息也将被用于生成更精确的数据库元数据：
     <ul>
-        <li>必填字段将会被标记为非空 </li>
-        <li>有一个最大长度限制的字段将具有与之相同的列长度</li>
+        <li>必填字段将会被标记为非空。 </li>
+        <li>有一个最大长度限制的字段将具有与之相同的列长度。</li>
     </ul>
 </p>
 <p>
@@ -140,13 +140,13 @@ sitemap:
 <h2>实体间映射关系</h2>
 
 <p>
-    实体间映射关系要基于 SQL 数据库。这个比较复杂，你可以查到文档 <a href="{{ site.url }}/managing-relationships/">Managing relationships</a>.
+    实体间映射关系要基于 SQL 数据库。这个比较复杂，你可以查到文档 <a href="{{ site.url }}/managing-relationships/">Managing relationships</a>。
 </p>
 
 <h2>数据传输对象 (DTOs)</h2>
 
 <p>
-    JHipster 实体默认不使用 DTOs，但是它们也是一个可选项。这里是相关文档：<a href="{{ site.url }}/using-dtos/">Using DTOs</a>.
+    JHipster 实体默认不使用 DTOs，但是它们也是一个可选项。这里是相关文档：<a href="{{ site.url }}/using-dtos/">Using DTOs</a>。
 </p>
 
 <h2>分页</h2>
@@ -155,16 +155,16 @@ sitemap:
 </p>
 
 <p>
-    分页使用了 <a href="http://tools.ietf.org/html/rfc5988" target="_blank">the Link header</a>。 正如 <a href="https://developer.github.com/v3/#pagination" target="_blank">GitHub API</a>. JHipster 基于这个规范，提供了一个自定义实现，可以用在服务端（Spring MVC REST）和 客户端（AngularJS）。
+    分页使用了 <a href="http://tools.ietf.org/html/rfc5988" target="_blank">the Link header</a>。 正如 <a href="https://developer.github.com/v3/#pagination" target="_blank">GitHub API</a>。JHipster 基于这个规范，提供了一个自定义实现，可以用在服务端（Spring MVC REST）和 客户端（AngularJS）。
 </p>
 
 <p>
     当实体对象被生成后，JHipster 提供了4个分页选项：
     <ul>
-        <li>没有分页 （这种情况下后台不提供分页）</li>
-        <li>简单的分页， 基于 <a href="http://getbootstrap.com/components/#pagination-pager" target="_blank">Bootstrap 默认的分页</a></li>
-        <li>复杂的分页， 基于 <a href="http://getbootstrap.com/components/#pagination" target="_blank">Bootstrap 的分页组建</a></li>
-        <li>无限滚动的分页，基于 <a href="http://sroze.github.io/ngInfiniteScroll/" target="_blank">ngInfiniteScroll（一个支持无限滚动的 AngularJS 组件）</a></li>
+        <li>没有分页 （这种情况下后台不提供分页）。</li>
+        <li>简单的分页， 基于 <a href="http://getbootstrap.com/components/#pagination-pager" target="_blank">Bootstrap 默认的分页</a>。</li>
+        <li>复杂的分页， 基于 <a href="http://getbootstrap.com/components/#pagination" target="_blank">Bootstrap 的分页组建</a>。</li>
+        <li>无限滚动的分页，基于 <a href="http://sroze.github.io/ngInfiniteScroll/" target="_blank">ngInfiniteScroll（一个支持无限滚动的 AngularJS 组件）</a>。 </li>
     </ul>
 </p>
 
@@ -187,11 +187,11 @@ sitemap:
 <p>
     你可能因为下面几个原因想更新实体：
     <ul>
-        <li>你想添加或者移除实体中的属性和映射关系</li>
-        <li>你希望将实体代码重置为其原始状态</li>
-        <li>你更新了 JHipster，你想采用新的模板生成的实体</li>
+        <li>你想添加或者移除实体中的属性和映射关系。</li>
+        <li>你希望将实体代码重置为其原始状态。</li>
+        <li>你更新了 JHipster，你想采用新的模板生成的实体。</li>
         <li>你修改了 <code>.json</code> 配置文件（这文件很容易看到，不复杂）, 所有你想以此生成新的模板。</li>
-        <li>你复制了 <code>.json</code> 文件，想生成一个和之前文件想近的实体。</li>
+        <li>你复制了 <code>.json。</code> 文件，想生成一个和之前文件想近的实体。</li>
     </ul>
 </p>
 <p>
@@ -204,11 +204,11 @@ sitemap:
 
 <h2>教程</h2>
 
-<p>这是一个简短的教程，创建两个实体（一个 Author 实体和一个 Book 实体），两者见存在一对多的映射关系<p>
+<p>这是一个简短的教程，创建两个实体（一个 Author 实体和一个 Book 实体），两者间存在一对多的映射关系。<p>
 
 <h3>生成 "Author" 实体</h3>
 
-<p>A因为我们想在 Authors 和 Books 构建一对多的映射关系 （一个作者有多本书），我们需要先创建 Author 实体。在数据库的层面，JHipster 才可以在 Booke 表中添加外键连接 Author 表。</p>
+<p>因为我们想在 Authors 和 Books 间构建一对多的映射关系 （一个作者有多本书），我们需要先创建 Author 实体。在数据库的层面，JHipster 才可以在 Booke 表中添加外键连接 Author 表。</p>
 
 <p>
     <code>
@@ -219,14 +219,14 @@ sitemap:
 <p>
     回答下面关于实体属性的问题，一个作者有：
     <ul>
-        <li>一个 "String" 类型的 "name" 属性</li>
-        <li>一个 "LocalDate"  类型的 "birthDate" 属性</li>
+        <li>一个 "String" 类型的 "name" 属性。</li>
+        <li>一个 "LocalDate"  类型的 "birthDate" 属性。</li>
     </ul>
 </p>
 <p>
-    然后回答它们间映射关系的问题，一个作者可能
+    然后回答它们间映射关系的问题，一个作者可能：
     <ul>
-        <li>和 "book" 实体存在一对多的映射关系（当然也可以是其它类型）</li>
+        <li>和 "book" 实体存在一对多的映射关系（当然也可以是其它类型）。</li>
     </ul>
 </p>
 
@@ -241,17 +241,17 @@ sitemap:
 <p>
    回答下面关于实体属性的问题，一本书有:
     <ul>
-        <li>"String" 类型的 "title" 的属性</li>
-        <li>"String" 类型的 "description" 的属性</li>
-        <li>"LocalDate" 类型的 "publicationDate" 的属性</li>
-        <li>"BigDecimal" 的 "price" 的属性</li>
+        <li>"String" 类型的 "title" 的属性。</li>
+        <li>"String" 类型的 "description" 的属性。</li>
+        <li>"LocalDate" 类型的 "publicationDate" 的属性。</li>
+        <li>"BigDecimal" 的 "price" 的属性。</li>
     </ul>
 </p>
 <p>
      然后回答它们间映射关系的问题，book 实体:
     <ul>
-        <li>和 "Author" 存在多对一的映射关系</li>
-        <li>映射关系名使用 "name"  (Author 实体的属性) 以用作前端展示</li>
+        <li>和 "Author" 存在多对一的映射关系。</li>
+        <li>映射关系名使用 "name"  (Author 实体的属性) 以用作前端展示。</li>
     </ul>
 </p>
 
@@ -273,10 +273,10 @@ sitemap:
     所生成的文件中包含的实体对象基本的 CRUD 操作，如果你的需求简单，则不需要怎么修改。
 </p>
 <p>
-    如果你想修改生成的代码或者数据库声明，你可以查看我们的 <a href="{{ site.url }}/development/">开发指南</a>
+    如果你想修改生成的代码或者数据库声明，你可以查看我们的 <a href="{{ site.url }}/development/">开发指南</a>。
 </p>
 <p>
-    如果你希望实现更加复杂的业务逻辑，你可能需要为 Sping 添加 <code>@Service</code> 类，可以使用 <a href="{{ site.url }}/creating-a-service/">service sub-generator</a>.
+    如果你希望实现更加复杂的业务逻辑，你可能需要为 Sping 添加 <code>@Service</code> 类，可以使用 <a href="{{ site.url }}/creating-a-service/">service sub-generator</a>。
 </p>
 
 <h3>看到这里，恭喜你已经完成了本节的简单教程！</h3>

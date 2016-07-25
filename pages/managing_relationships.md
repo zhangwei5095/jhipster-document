@@ -19,9 +19,9 @@ sitemap:
 
 映射关系只在两个实体间起作用，JHipster 将生成如下的代码：
 
-- 使用 JPA 管理生成实体的映射关系的代码
-- 创建 Liquibase 的修改日志，以便在数据库中体现出它们映射关系
-- 生成 AngularJS 前端代码，以便在用户界面中以图形方式管理这种映射关系
+- 使用 JPA 管理生成实体的映射关系的代码。
+- 创建 Liquibase 的修改日志，以便在数据库中体现出它们映射关系。
+- 生成 AngularJS 前端代码，以便在用户界面中以图形方式管理这种映射关系。
 
 
 ## JHipster UML 和 JDL Studio
@@ -50,7 +50,7 @@ sitemap:
 7. [单向的一对一映射关系](#7)
 
 
-_Tip: the `User` entity_
+_关于 `User` 实体的小提示_
 
 注意 `User` 这个实体，JHipster 是经过特殊处理的。假设你要进行 `多对一` 的映射（例如 `Car` 和 `User` 可能存在多对一的映射关系）。这样在实体对应的 repository 中会生成一个特殊的查询（如：在CarRepository 中会生成 `List<Car> findByUserIsCurrentUser();`），这个查询仅筛选出当前用户拥有的 `Car`。在生成前端UI中，在 `Car` 对应的下拉选择项里面你可以选择一个 `User`。
 
@@ -72,7 +72,7 @@ _Tip: the `User` entity_
     ? What is the type of the relationship? one-to-many
     ? What is the name of this relationship in the other entity? owner
 
-注意这里我们选择默认的映射关系名是和实体的名称一样。
+注意这里我们选择默认映射关系名称和实体的一样。
 
 现在我们生成实体 `Car`，同上仅列出与生成映射关系相关的问题：
 
