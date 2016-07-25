@@ -13,18 +13,18 @@ sitemap:
 
 ## Project Structure
 
-The JHipster client code can be found under `src/main/webapp`, and follows closely the  [John Papa AngularJS 1 style guide](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). Please read this guide first if you have any question on our application structure, file names, JavaScript conventions...
+Jhipster前端的代码在`src/main/webapp`目录下,前端代码严格遵守[John Papa AngularJS 1 风格指南](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md).请先阅读这份引导,如果有关于项目结构,文件名称,JavaScript规范的疑问.
 
-This style guide is endorsed by the AngularJS team, and gives the guarantee to have a clear upgrade path to AngularJS 2.
+这套风格指南是AngularJS团队所认可的,并且保证了升级到AngularJS2 的一个明确路线.
 
-For AngularJS routes we follow a dash cased naming convention so that the URLs are clean and consistent.
-When you generate an entity the route names, route URLs and REST API endpoint URLs are generated according to this convention, also entity names are automatically pluralized where required.
+AngularJS的路由我们遵循DASH下的命名约定,以便URLs是干净的和一致的.
+当你生成一个实体的路由名称时,路由的URLs和REST API端点URLs会依据这个约定自动生成,同时实体名称自动复数化(如实体为Foo变为Foos)。
 
-Here is the main project structure:
+这里是主项目的结构:
 
     webapp
     ├── app                               - Your application
-    │   ├── account                       - User account management UI
+    │   ├── account                        - User account management UI
     │   ├── admin                         - Administration UI
     │   ├── blocks                        - Common building blocks like configuration and interceptors
     │   ├── components                    - Common components like alerting and form validation
@@ -48,7 +48,7 @@ Here is the main project structure:
     ├── index.html                        - Index page
     ├── robots.txt                        - Configuration for bots and Web crawlers
 
-Using the [entity sub-generator]({{ site.url }}/creating-an-entity/) to create a new entity called `Foo` generates the following front-end files under `src/main/webapp`:
+使用[entity sub-generator]({{ site.url }}/creating-an-entity/)来创建一个新的实体名为`Foo`在`src/main/webapp`下生成前端文件:
 
     webapp
     ├── app
@@ -70,11 +70,11 @@ Using the [entity sub-generator]({{ site.url }}/creating-an-entity/) to create a
     │   ├── fr                                         - French translations
     │   │   ├── foo.json                               - French translation of Foo name, fields, ...
 
-Please note that the default language translations would be based on what you have choosen during app generation. 'en' and 'fr' are shown here only for demonstration.
+注意,默认语言的翻译是基于你生成项目的时候选择.'en'和'fr'为项目演示而用.
 
-## Authorizations
+## 授权
 
-JHipster uses [angular-ui-router](http://angular-ui.github.io/ui-router/) to organize the different parts of your client application.
+JHipster使用 [angular-ui-router](http://angular-ui.github.io/ui-router/) 来组织应用程序客户端的不同模块(路由).
 
 For each state, the required authorities are listed in the state's data, and when the authority list is empty it means that the state can be accessed anonymously.
 
