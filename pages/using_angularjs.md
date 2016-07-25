@@ -76,11 +76,11 @@ AngularJS的路由我们遵循DASH下的命名约定,以便URLs是干净的和�
 
 JHipster使用 [angular-ui-router](http://angular-ui.github.io/ui-router/) 来组织应用程序客户端的不同模块(路由).
 
-For each state, the required authorities are listed in the state's data, and when the authority list is empty it means that the state can be accessed anonymously.
+对于每一个路由节点,必须的权限在路由的date属性里配置,当权限列表为空的时候意味着这块路由可以被任何匿名者访问.
 
-The authority names are defined in server's class `AuthoritiesConstants.java`.
+权限名称在服务端的类文件`AuthoritiesConstants.java`定义.
 
-In the example below, the 'sessions' state can be accessed only by authenticated users who have `ROLE_USER` authority:
+在下面的例子里,`.state('sessions',{})`只能被具有`ROLE_USER`权限的用户访问(对`ROLE_USER`的用户认证).
 
     (function() {
         'use strict';
@@ -116,15 +116,15 @@ In the example below, the 'sessions' state can be accessed only by authenticated
         }
     })();
 
-## Notification System
+## 提示系统
 
-JHipster uses [ui-bootstrap alerts](https://angular-ui.github.io/bootstrap/#/alert) for the notification system, and has an i18n-capable `AlertService` which can be used throughout the generated applications.
+JHipster使用[ui-bootstrap alerts](https://angular-ui.github.io/bootstrap/#/alert)作为提示系统,生成在具有国际化能力的模块`AlertService`里,在项目中使用.
 
-By default JHipster will show success notifications whenever an entity is created/updated/deleted and error notifications when there is an error caught from the response.
+Jhipster默认显示成功提示当一个实体创建/更新/删除,当有错误提示时,将从后端捕获一个错误响应.
 
-To show a custom notification or alert, use the below methods after injecting the `AlertService` to your controller, directive or service.
+自定义通知或提醒，使用下面的方法将`AlertService`注入你的控制器器，指令或服务。
 
-The shorthand methods `success`, `info`, `warning` and `error` will have a timeout of 5 seconds, for other configurations use the `add` method:
+`success`, `info`, `warning` and `error`这些方法提示将会有5秒的延迟显示,其他的配置使用`add`方法:
 
     (function() {
         'use strict';
@@ -165,5 +165,4 @@ The shorthand methods `success`, `info`, `warning` and `error` will have a timeo
         }
     })();
 
-
-If you would like the notifications to look like toasts you can enable that by setting `AlertServiceProvider.showAsToast(true)` in `src/main/webapp/app/blocks/config/alert.config.js`. By default this will be set to false `AlertServiceProvider.showAsToast(false)`.
+如果你想提示让提示的方式像Toasts(Bootstrap Toastr JS显示效果),你可以这样设置将`src/main/webapp/app/blocks/config/alert.config.js`下的设置为`AlertServiceProvider.showAsToast(true)`,默认情况下为`false`,`AlertServiceProvider.showAsToast(false)`.
