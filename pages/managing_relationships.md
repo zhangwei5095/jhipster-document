@@ -9,56 +9,59 @@ sitemap:
     lastmod: 2016-03-26T18:40:00-00:00
 ---
 
-# <i class="fa fa-sitemap"></i> Managing relationships
+# <i class="fa fa-sitemap"></i> 管理实体间映射关系
 
-When JPA is used, the [entity sub-generator]({{ site.url }}/creating-an-entity/) can create relationships between entities.
+如果你在使用JPA，可以通过 [entity sub-generator]({{ site.url }}/creating-an-entity/) 创建实体之间映射关系。
+ 
 
-## Presentation
+## 介绍 
+注意只有当你使用了 JPA 才可以在实体间生成映射关系。如果你选择了 [Cassandra]({{ site.url }}/using-cassandra/) 或者 [MongoDB]({{ site.url }}/using-mongodb/)，则不会起作用。
 
-Relationships only work when JPA is used. If you choose to use [Cassandra]({{ site.url }}/using-cassandra/) or [MongoDB]({{ site.url }}/using-mongodb/), they won't be available.
+映射关系只在两个实体间起作用，JHipster 将生成如下的代码：
 
-A relationship works between two entities, and JHipster will generate the code for:
+- 使用 JPA 管理生成实体的映射关系的代码
+- 创建 Liquibase 的修改日志，以便在数据库中体现出它们映射关系
+- 生成 AngularJS 前端代码，以便在用户界面中以图形方式管理这种映射关系
 
-- Managing this relationship with JPA in the generated entities
-- Creating the correct Liquibase changelog, in order for the relationship to exist in the database
-- Generating the AngularJS front-end so you can manage this relationship graphically in the user interface
 
-## JHipster UML and JDL Studio
+## JHipster UML 和 JDL Studio
+这一章节描述如何使用标准的命令行界面创建实体映射关系。不过如果你想创建大量的实体和映射关系，你可能会喜欢通过图形工具来实现。
 
-This page describes how to create relationships with JHipster using the standard command-line interface.  If you want to create many entities and relationships, you might prefer to use a graphical tool.
+针对这种情况，有两个可供选择的工具：
 
-In that case, two options are available:
+- [JHipster UML]({{ site.url }}/jhipster-uml/)，可以让你使用 UML 编辑器。
 
-- [JHipster UML]({{ site.url }}/jhipster-uml/), which allows you to use an UML editor.
-- [JDL Studio]({{ site.url }}/jdl-studio/), our online tool to create entities and relationships using our domain-specific language.
+- [JDL Studio]({{ site.url }}/jdl-studio/)，我们的在线工具，通过使用我们的特定领域语言 [JDL](https://jhipster.github.io/jdl/) 来创建实体间映射关系。
 
-You can generate entities with relationships from a JDL file using the `import-jdl` sub-generator, by running `yo jhipster:import-jdl your-jdl-file.jh`.
 
-## Available relationships
+你可以使用 `import-jdl` 子生成器，通过读取 JDL 文件，来生成实体和映射关系，命令为 `yo jhipster:import-jdl your-jdl-file.jh`。
 
-As we use JPA, the usual one-to-many, many-to-one, many-to-many and one-to-one relationships are available:
 
-1. [A bidirectional one-to-many relationship](#1)
-2. [A unidirectional many-to-one relationship](#2)
-3. [A unidirectional one-to-many relationship](#3)
-4. [Two one-to-many relationships on the same two entities](#4)
-5. [A many-to-many relationship](#5)
-6. [A one-to-one relationship](#6)
-7. [A unidirectional one-to-one relationship](#7)
+## 可能的映射关系种类
+
+因为我们使用来 JPA ，所以普通的一对多、多对一，多对多和一对一的映射关系是可以生成的：
+
+1. [双向一对多的映射关系](#1)
+2. [单向多对一的映射关系](#2)
+3. [单向一对多的映射关系](#3)
+4. [在两个实体间存在两个一对多的映射关系](#4)
+5. [一个多对多的映射关系](#5)
+6. [双向一对一的映射关系](#6)
+7. [单向的一对一映射关系](#7)
+
 
 _Tip: the `User` entity_
 
-Please note that the `User` entity, which is handled by JHipster, is specific. You can do `many-to-one` relationships to this entity (a `Car` can have a many-to-one relationship to a `User`). This will generate a specific query in your new entity repository, so you can filter your entity on the current security user, which is a common requirement. On the generated AngularJS client UI you will have a dropdown in `Car` to select a `User`.
+注意 `User` 这个实体，JHipster 是经过特殊处理的。假设你要进行 `多对一` 的映射（例如 `Car` 和 `User` 可能存在多对一的映射关系）。这样在实体对应的 repository 中会生成一个特殊的查询（如：在CarRepository 中会生成 `List<Car> findByUserIsCurrentUser();`），这个查询仅筛选出当前用户拥有的 `Car`。在生成前端UI中，在 `Car` 对应的下拉选择项里面你可以选择一个 `User`。
 
-## <a name="1"></a> A bidirectional one-to-many relationship
-
-Let's start with two entities, a `Owner` and a `Car`. A owner can have many cars, and a car can have only one owner.
-
-So this is a simple one-to-many relationship (one owner has many cars) on one side, and a many-to-one relationship (many cars have one owner) on the other side:
+## <a name="1"></a> 双向一对多映射关系
+举个例子，`Owner` 和 `Car` 这个两个实体。一个车主可以有多辆车，而一辆车只有一个车主。
+ 
+所以这是一个双向一对多映射关系，即：
 
     Owner (1) <-----> (*) Car
 
-We will create the `Owner` first. Here are the relevant JHipster questions for the `Owner`:
+我们需要先创建 `Owner` 实体。下面仅仅列出 JHipster 将询问的映射关系的相关问题：
 
     yo jhipster:entity Owner
     ...
@@ -69,9 +72,9 @@ We will create the `Owner` first. Here are the relevant JHipster questions for t
     ? What is the type of the relationship? one-to-many
     ? What is the name of this relationship in the other entity? owner
 
-Please note that we selected the default options concerning the names of the relationships.
+注意这里我们选择默认的映射关系名是和实体的名称一样。
 
-Now we can generate the `Car`:
+现在我们生成实体 `Car`，同上仅列出与生成映射关系相关的问题：
 
     yo jhipster:entity Car
     ...
@@ -82,8 +85,7 @@ Now we can generate the `Car`:
     ? What is the type of the relationship? many-to-one
     ? When you display this relationship with AngularJS, which field from 'Owner' do you want to use? id
 
-
-The same can be achieved using the below JDL as well
+你同样可以通过使用下面的 JDL 来实现：
 
     entity Owner
     entity Car
@@ -92,29 +94,31 @@ The same can be achieved using the below JDL as well
       Owner{car} to Car{owner}
     }
 
-That's it, you now have a one-to-many relationship between those two entities! On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Owner`.
+这样就完成了在两个实体间，生成双向一对多的映射关系。在新生成的 AngularJS 前端代码所对应的UI界面，会有一个 `Car` 的下拉选项让你选择 `Owner`。
 
-## <a name="2"></a> A unidirectional many-to-one relationship
 
-In the previous example we had a bidirectional relationship: from a `Car` instance you could find its owner, and from a `Owner` instance you could get all of its cars.
+## <a name="2"></a> 单向多对一关系 
 
-A many-to-one unidirectional relationship means that the cars know their owner, but not the opposite.
+在前面的例子描述了一个双向的关系，通过一个 `Car` 的实例，你可以找到 `Owner`，通过一个 `Owner` 的实例，你可以得到他所有的 `Car`。
+
+而一个单向的多对一关系，意味着汽车知道他们的车主，但是反过来就不行。
 
     Owner (1) <----- (*) Car
 
-You would do that relationship for two reasons:
+你生成这样的映射关系，会有两个原因：
 
-- From a business point of view, you only use your entities in this way. So you don't want to have an API that allows developers to do something which doesn't make sense.
-- You have a small performance gain when using the `Owner` entity (as it won't have to manage the collection of cars).
+- 从业务的角度来看，你要用这种方式来使用你的实体类，是因为你并不想去生成一个没有意义的API。
 
-In that case, you would still create the `Owner` first, this time with no relationship:
+- 从性能的角度来考虑，你这样使用 `Owner`，可以为系统带来性能上的提升。（因为它不必管理汽车的集合）。
+
+在这个案例中，你同样需要先创建 `Owner` 实体，生成的关系如下：
 
     yo jhipster:entity Owner
     ...
     Generating relationships with other entities
     ? Do you want to add a relationship to another entity? No
 
-And then the `Car` entity, as in the previous example:
+然后是 `Car` 实体，和之前例子一样：
 
     yo jhipster:entity Car
     ...
@@ -125,8 +129,7 @@ And then the `Car` entity, as in the previous example:
     ? What is the type of the relationship? many-to-one
     ? When you display this relationship with AngularJS, which field from 'Owner' do you want to use? id
 
-This will work as in the previous example, but you won't be able to add or remove cars from the `Owner` entity. On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Owner`.
-This is the corresponding JDL:
+这里的运行方式和前面的例子一样，但是你不能通过 `Owner` 对象来添加或者移除汽车。在新生成的 AngularJS 前端代码所对应的UI界面，会有一个 `Car` 的下拉选项让你选择 `Owner`。这是对应的 JDL :
 
     entity Owner
     entity Car
@@ -136,33 +139,32 @@ This is the corresponding JDL:
     }
 
 
-## <a name="3"></a> A unidirectional one-to-many relationship
+## <a name="3"></a> 单向一对多的映射关系
+单向的一对多映射关系意味着一个 `Owner` 实例有一个 car 集合，但反过来就不行，这和之前的例子相反：
 
-A one-to-many unidirectional relationship means that the `Owner` instance can get its collection of cars, but not the opposite. It is the opposite from the previous example.
 
     Owner (1) -----> (*) Car
 
-This type of relationship is not provided by default in JHipster at the moment, see [#1569](https://github.com/jhipster/generator-jhipster/issues/1569) for more information.
+JHipster 目前默认不提供这个映射关系，点击 [#1569](https://github.com/jhipster/generator-jhipster/issues/1569) 查看更多信息。
 
-You have two solutions for this:
+针对此情况，有两种解决方式：
 
-- Do a bidirectional mapping, and use it without modification: this is our recommended approach, as it is much simpler
-- Do a bidirectional mapping, and then modify it to transform it into a unidirectional mapping:
-    - Remove the "mappedBy" attribute on your `@OneToMany` annotation
-    - Generate the required join table: you can do a `mvn liquibase:diff` to generate that table, see the [documentation about using Liquibase diff]({{ site.url }}/development/)
+- 做一个双向映射，并不修改代码，这是我们推荐的方法，因为它是简单得多
+ 
+- 做一个双向映射，然后修改它，把它转化成一个单向映射：
+    - 移除在 `@OneToMany` 注解上的 "mappedBy" 属性
+    - 生成需要的关联表，你可以通过`mvn liquibase:diff` 来生成，详情请查看  [documentation about using Liquibase diff]({{ site.url }}/development/)
 
-This is not supported with JDL as it isn't in JHipster.
+这个是不支持 JDL 。
 
-## <a name="4"></a> Two one-to-many relationships on the same two entities
-
-For this example, a `Person` can be the owner of many cars, and he can also be the driver of many cars:
+## <a name="4"></a> 在两个实体间有两种一对多的关系 
+在这个例子中，一个`Person` 实例可能是多辆车的所有者，它也可能只是多辆车的司机：
 
     Person (1) <---owns-----> (*) Car
     Person (1) <---drives---> (*) Car
 
-For this we need to use the relationship names, which we have left with their default values in the previous examples.
-
-Generate the `Person` entity, which has tow one-to-many relationships to the `Car` entity:
+在这种情况下我们需要自定义映射关系名称，在之前的例子我们都是使用默认的值。
+首先我们生成 `Person` 实体类，它和 `Car` 间存在两种一对多的映射关系：
 
     yo jhipster:entity Person
     ...
@@ -180,7 +182,7 @@ Generate the `Person` entity, which has tow one-to-many relationships to the `Ca
     ? What is the type of the relationship? one-to-many
     ? What is the name of this relationship in the other entity? driver
 
-Generate the `Car` entity, which use the same relationship name has was configured in the `Person` entity:
+然后我们生成 `Car` 实体类，其中映射关系名要和在 `Person` 中声明的要一致：
 
     yo jhipster:entity Car
     ...
@@ -198,7 +200,7 @@ Generate the `Car` entity, which use the same relationship name has was configur
     ? What is the type of the relationship? many-to-one
     ? When you display this relationship with AngularJS, which field from 'Person' do you want to use? id
 
-The same can be achieved using the below JDL as well
+当然他也可以通过 JDL 来实现：
 
     entity Person
     entity Car
@@ -211,19 +213,19 @@ The same can be achieved using the below JDL as well
       Person{drivedCar} to Car{driver}
     }
 
-A `Car` can now have a driver and a owner, which are both `Person` entities. On the generated AngularJS client UI you will dropdowns in `Car` to select a `Person` for `owner` field and `driver` field.
+现在 `Car` 实体有一个司机和一个所有者，他们都是 `Person` 类的实例。在生成的前端界面中，`Car` 对应的下拉菜单项中会有 `driver` 和 `ower` 两个选项。
 
-## <a name="5"></a> A many-to-many relationship
-
-A `Driver` can drive many cars, but a `Car` can also have many drivers.
+## <a name="5"></a> 多对多的映射关系
+一个 `Driver` 可以有多辆车，而 `Car` 也可以有多个司机。
 
     Driver (*) <-----> (*) Car
 
-At the database level, this means we will have a join table between the `Driver` and the `Car` tables.
 
-For JPA, one of those two entities will need to manage the relationship: in our case, that would be the `Car` entity, which will be responsible to add or remove drivers.
+在数据库的层面上，这意味着在 `Driver` 表和 `Car` 表间有一个关联表。
 
-Let us generate the non-owning side of the relationship, the `Driver`, with a many-to-many relationship:
+对 JPA 来说，这两个实体都可以管理它们间的映射关系。在我们下面的这个案例中，用 `Car` 作为演示主体，可以添加或者移除它的 `driver` 。
+
+我们先生成非映射关系持有者 `Driver`，使用多对多的映射关系：
 
     yo jhipster:entity Driver
     ...
@@ -235,7 +237,7 @@ Let us generate the non-owning side of the relationship, the `Driver`, with a ma
     ? Is this entity the owner of the relationship? No
     ? What is the name of this relationship in the other entity? driver
 
-Then generate the `Car`, with the owning side of the many-to-many relationship:
+然后生成 `Car` 作为映射关系持有方：
 
     yo jhipster:entity Car
     ...
@@ -247,7 +249,7 @@ Then generate the `Car`, with the owning side of the many-to-many relationship:
     ? Is this entity the owner of the relationship? Yes
     ? When you display this relationship with AngularJS, which field from 'Driver' do you want to use? id
 
-The same can be achieved using the below JDL as well
+当然这也可以通过下面的 JDL 来实现:
 
     entity Driver
     entity Car
@@ -256,15 +258,14 @@ The same can be achieved using the below JDL as well
       Car{driver} to Driver{car}
     }
 
-That's it, you now have a many-to-many relationship between those two entities! On the generated AngularJS client UI you will have a multi-select dropdown in `Car` to select multiple `Driver` since `Car` is the owning side.
+以上，你可以完成在两个实体多对多的映射关系。生成的 AngularJS 前端代码所对应的UI界面，会有一个多选择项的下拉框，让你通过 `Car` 选择多个 `Driver`，因为这里 `Car` 是关系的持有者。
 
-## <a name="6"></a> A one-to-one relationship
-
-Following our example, a one-to-one relationship would mean that a `Driver` can drive only one `Car`, and a `Car` can only have one `Driver`.
+## <a name="6"></a> 双向一对一的映射关系
+按照我们这个例子，一个一对一的映射关系意味着一个 `Driver` 只能有一辆 `Car`，一个 `Car` 也只能有一个 `Driver`。
 
     Driver (1) <-----> (1) Car
 
-Let us create the non-owning side of the relationship, in our case the `Driver`:
+让我们选择 `Driver` 作为非关系持有者：
 
     yo jhipster:entity Driver
     ...
@@ -276,7 +277,7 @@ Let us create the non-owning side of the relationship, in our case the `Driver`:
     ? Is this entity the owner of the relationship? No
     ? What is the name of this relationship in the other entity? driver
 
-Then generate the `Car`, which owns the relationship:
+`Car` 作为关系持有者：
 
     yo jhipster:entity Car
     ...
@@ -289,7 +290,7 @@ Then generate the `Car`, which owns the relationship:
     ? What is the name of this relationship in the other entity? car
     ? When you display this relationship with AngularJS, which field from 'Driver' do you want to use? id
 
-The same can be achieved using the below JDL as well
+同样上面的效果也可以通过下面的 JDL 来实现：
 
     entity Driver
     entity Car
@@ -298,22 +299,22 @@ The same can be achieved using the below JDL as well
       Car{driver} to Driver{car}
     }
 
-That's it, you now have a one-to-one relationship between those two entities! On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Driver` since `Car` is the owning side.
+以上，你可以完成在两个实体一对一的映射关系。生成的前端UI，你可以通过 `Car` 选择 `Driver`，因为 `Car` 是关系持有者。
 
-## <a name="7"></a> A unidirectional one-to-one relationship
 
-A unidirectional one-to-one relationship means that the `citizen` instance can get its passport, but the `passport` instance can't get to its owner.
+## <a name="7"></a> 单向的一对一映射关系
+单向的一对一映射关系意味着通过 `citizen` 实例可以得到它的通行证 `passport`，但是通过 `passport` 实例无法得到 `citizen`
 
     Citizen (1) -----> (1) Passport
 
-Generate the `Passport` entity first, without any relationship to its owner:
+首先生成 `Passport` 实体作为非关系的持有者：
 
     yo jhipster:entity Passport
     ...
     Generating relationships with other entities
     ? Do you want to add a relationship to another entity? No
 
-Then, generate the `Citizen` entity:
+然后生成 `Citizen` 实体:
 
     yo jhipster:entity Citizen
     ...
@@ -326,13 +327,6 @@ Then, generate the `Citizen` entity:
     ? What is the name of this relationship in the other entity? citizen
     ? When you display this relationship with AngularJS, which field from 'Passport' do you want to use? id
 
-After doing this, a `Citizen` possesses a passport, but no `Citizen` instance is defined in `Passport`. On the generated AngularJS client UI you will have a dropdown in `Citizen` to select a `Passport` since `Citizen` is the owning side.
-This is the corresponding JDL:
+这样做，一个 `Citizen` 拥有一个通行证 `passport`，但并非一个通行证就对应了一个 `Citizen` 实例。在对应生成 AngularJS 的客户端界面中，你可以在 `Citizen` 下拉菜单选项中选择一个 `passport` ，因为 `Citizen` 是关系持有方。
 
-
-    entity Citizen
-    entity Passport
-
-    relationship OneToOne {
-      Citizen{passport} to Passport
-    }
+另外这个不支持 JDL 。
