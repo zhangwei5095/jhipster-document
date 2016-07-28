@@ -9,152 +9,151 @@ sitemap:
     lastmod: 2014-06-02T00:00:00-00:00
 ---
 
-# <i class="fa fa-rocket"></i> Creating an application
+# <i class="fa fa-rocket"></i> 创建一个应用
 
-_**Please check our [video tutorial]({{ site.url }}/video-tutorial/) on creating a new JHipster application!**_
+_**请查看我们的 [教学视频]({{ site.url }}/video-tutorial/) 以快速创建一个应用!** _
+
 
 1. [Quick start](#1)
 2. [Questions asked when generating an application](#2)
 3. [Command-line options](#3)
 4. [Tips](#4)
 
-## <a name="1"></a> Quick start
-
-First of all, create an empty directory in which you will create your application:
+## <a name="1"></a> 快速开始
+首先，创建你要存放应用的目录：
 
 `mkdir myapplication`
 
-Go to that directory:
+进入目录：
 
 `cd myapplication/`
 
-To generate your application, type:
+生成应用：
 
 `yo jhipster`
 
-Answer the questions asked by the generator to create an application tailored to your needs. Those options are described in [the next section](#2).
+根据需求回答相应的问题，详细的问题在 [下面部分](#2) 会提到.
 
-Once the application is generated, you can launch it using Maven (`./mvnw` on Linux/MacOS, `mvnw.cmd` on Windows) or Gradle (`./gradlew` on Linux/MacOS, `gradelw.bat` on Windows). You can go the [Using JHipster in development]({{ site.url }}/development/) page for more information.
+当应用生成后，你可以通过 Maven  (`./mvnw` on Linux/MacOS, `mvnw.cmd` on Windows) 或者 Gradle (`./gradlew` on Linux/MacOS, `gradelw.bat` on Windows) 启动应用。 你可以前往 [Using JHipster in development]({{ site.url }}/development/) 页获取更多信息。
 
-The application will be available on [http://localhost:8080](http://localhost:8080)
+你可以通过  [http://localhost:8080](http://localhost:8080) 访问你的应用。
 
-## <a name="2"></a> Questions asked when generating an application
+## <a name="2"></a> 当生成应用时需要回答的问题
 
-_Some questions change depending on the previous choices you have made. For example, you won't need to configure an Hibernate cache if you didn't select an SQL database._
+_一些问题的改变取决于你前面的选择。例如，如果你zhiq没有选择一个SQL数据库的话，你不需要配置一个 Hibernate 缓存。
 
-### Which *type* of application would you like to create?
+### 你想创建什么类型的应用？
 
-Your type of application depends on whether you wish to use a microservices architecture or not. A full explanation on microservices is [available here]({{ site.url }}/microservices-architecture/), if unsure use the default "Monolithic application".
+你需要选择的应用依赖于你是否想选择微服务作为你的架构。关于微服务的详细描述在 [available here]({{ site.url }}/microservices-architecture/)，如果你不确定，就选择默认的 "Monolithic application"。
 
-You can either use:
+你可以选择：
 
-*   Monolithic application: this a classical, one-size-fits-all application. It's easier to use and develop, and is our recommended default.
-*   Microservice application: in a microservices architecture, this is one of the services.
-*   Microservice gateway: in a microservices architecture, this is an edge server that routes and secures requests.
+* 一体化应用：这是一个典型的，通用的应用。它容易使用和开发，是我们默认推荐的。
+* 微服务应用：采用微服务的架构，这是其中一个服务实例。
+* 微服务网关：采用微服务的架构，这里一个为微服务实例提供路由以及安全保障的应用。
 
-### What is the base name of your application?
+### 你应用的名称？
 
-This is the name of your application.
+如题，输入你应用的名称。
 
-### What is your default Java package name?
 
-Your Java application will use this as its root package. This value is stored by Yeoman so that the next time you run the generator the last value will become default. Of course you can override it by providing a new value.
+### 你的 Java 包名 ?
+你的 java 应用程序将使用此作为它的根包。这个值被存储在 Yeoman 在，下次运行生成器，它将成为默认值。当然，你可以通过提供一个新的值来覆盖它。
 
-### Which *type* of authentication would you like to use?
+### 你选择哪种身份认证方式？
 
-You can either use:
+你可以选择：
 
-*   A classical session-based authentication mechanism, like we are used to do in Java (this is how most people use [Spring Security](http://docs.spring.io/spring-security/site/index.html)). You can use this option with Spring Social, which will enable you to use "social login" (such as Google, Facebook, Twitter): this is configured by Spring Boot's support of Spring Social.
-*   An OAuth 2.0 authentication mechanism (JHipster then provides the necessary OAuth2 server code and database tables).
-*   A mechanism using [JSON Web Token (JWT)](https://jwt.io/)
+* 基于经典的会话认证机制， 做 java web 都知道（这也是许多人使用 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的方式）。你也可以通过用这种方式来使用 Spring Social。Spring Social 可以让你使用社会化登陆（比如 Google，Facebook，Twitter）, 这个配置项由 Spring boot 提供。
 
-The OAuth 2.0 and the JWT approaches allow to use a stateless application architecture (they do not rely on the HTTP Session). You can find more information on our [securing your application]({{ site.url }}/security/) page.
+*   基于 OAuth 2.0 的认证机制。（JHipster 会提供生成必要的 OAuth2 服务端代码和数据库表）。
 
-### Which *type* of database would you like to use?
+*   采用 [JSON Web Token (JWT)](https://jwt.io/) 的认证机制。
 
-You can choose between:
+OAuth 2.0 和 JWT 可以让你构建无状态的应用架构（他们不依赖 HTTP Session）。你可以在这里查看更多信息 information on our [securing your application]({{ site.url }}/security/) 。
 
-- No database (only available when using a [microservice application]({{ site.url }}/microservices-architecture/))
-- An SQL database (H2, MySQL, MariaDB, PostgreSQL, Oracle), which you will access with Spring Data JPA
+### 你想使用哪种数据库？
+
+你可以选择：
+
+- 不使用数据 (仅支持 [微服务应用]({{ site.url }}/microservices-architecture/))
+- SQL 数据库 （H2, MySQL, MariaDB, PostgreSQL, Oracle），默认 使用Spring Data JPA 来访问。
 - [MongoDB]({{ site.url }}/using-mongodb/)
 - [Cassandra]({{ site.url }}/using-cassandra/)
 
-### Which *production* database would you like to use?
+### 你要在生产环境下采用哪种数据库？
+这个选项的回答会被写入生产环境下的配置文件。你可以在 `src/main/resources/config/application-prod.yml` 文件中配置他。.
 
-This is the database you will use with your "production" profile. To configure it, please modify your `src/main/resources/config/application-prod.yml` file.
+如果你想使用 Oracle，你需要查看 [install the Oracle JDBC driver manually]({{ site.url }}/using-oracle/).
 
-If you want to use Oracle, you will need to [install the Oracle JDBC driver manually]({{ site.url }}/using-oracle/).
+### 你要在开发环境下采用哪种数据库？
 
-### Which *development* database would you like to use?
+这个选项的回答会被写入开发环境下的配置文件。
+你也可以选择：
 
-This is the database you will use with your "development" profile. You can either use:
+* 在内存中运行的 H2。这种方式很简单使用，但是你的数据会丢失当你重新启动服务器。
+* 数据存储在磁盘上的 H2。目前处在 BETA 测试状态（不支持 Windows），但这将最终是一个比在内存中运行更好的选择，因为你不会失去你的数据后，当应用程序重新启动后。
 
-*   H2, running in-memory. This is the easiest way to use JHipster, but your data will be lost when you restart your server.
-*   H2, with its data stored on disk. This is currently in BETA test (and not working on Windows), but this would eventually be a better option than running in-memory, as you won't lose your data upon application restart.
-*   The same database as the one you chose for production: it's a bit more complex to set up, but it should be better in the end to work on the same database as the one you will use in production. This is also the best way to use liquibase-hibernate as described in [the development guide]({{ site.url }}/development/).
+*   和生产环节一样的数据库，这搭建的时候会有点麻烦。但是你最好在编码完成后，在和生产环境一样的数据库上跑一下程序 。这里最好也采用 liquibase-hibernate，在  [the development guide]({{ site.url }}/development/)中有描述。
 
-To configure it, please modify your `src/main/resources/config/application-dev.yml` file.
+你可以在 `src/main/resources/config/application-dev.yml` 文件中配置它。
 
-### Do you want to use Hibernate 2nd level cache?
+### 你想使用 Hibernate 二级缓存吗?
 
-[Hibernate](http://hibernate.org/) is the JPA provider used by JHipster. For performance reasons, we highly recommend you to use a cache, and to tune it according to your application's needs.
-If you choose to do so, you can use either [ehcache](http://ehcache.org/) (local cache) or [Hazelcast](http://www.hazelcast.com/) (distributed cache, for use in a clustered environnement)
+[Hibernate](http://hibernate.org/) 是 JHipster 提供的 JPA 的实现。处于性能考虑，我们强烈建议你是有缓存，你可以根据你的应用来调整它。你可以选择使用  [ehcache](http://ehcache.org/) (本地缓存) 或者 [Hazelcast](http://www.hazelcast.com/) (分布式缓存，用于集群环境)。
 
-### Do you want to use a search engine in your application?
+### 你想为你的应用提高搜索引擎吗？
 
-[Elasticsearch](https://github.com/elastic/elasticsearch) will be configured using Spring Data Elasticsearch. You can find more information on our [Elasticsearch guide]({{ site.url }}/using-elasticsearch/).
+[Elasticsearch](https://github.com/elastic/elasticsearch) 将配置实用 Spring Data Elasticsearch。你可以通过 [Elasticsearch guide]({{ site.url }}/using-elasticsearch/) 查看更多信息。
 
-### Do you want to use clustered HTTP sessions?
+### 你想使用 HTTP sessions 集群吗？
+默认情况下，JHipster 使用 HTTP session 存储 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的认证与授权信息，你可以选择存储更多的信息在 HTTP sessions 中。
 
-By default, JHipster uses a HTTP session only for storing [Spring Security](http://docs.spring.io/spring-security/site/index.html)'s authentication and autorisations information. Of course, you can choose to put more data in your HTTP sessions.
-Using HTTP sessions will cause issues if you are running in a cluster, especially if you don't use a load balancer with "sticky sessions".
-If you want to replicate your sessions inside your cluster, choose this option to have [Hazelcast](http://www.hazelcast.com/) configured.
+如果你部署了一个集群，使用 HTTP session 将会出现一些问题，尤其是你如果不对粘滞会话(Sticky Sessions) 进行负载均衡。
+如果你想在集群中复制你的 sessions，可以选择配置 [Hazelcast](http://www.hazelcast.com/)。
 
-### Do you want to use WebSockets?
+### 你想使用 WebSockets 吗？
 
-Websockets can be enabled using Spring Websocket. We also provide a complete sample to show you how to use the framework efficiently.
+你可以通过 Spring Websocket 来使用 Websockets.我们还提供了一个完整的示例来展示如何有效地使用这个框架。
 
-### Would you like to use Maven or Gradle?
+### 你想使用 Maven 还是 Gradle ?
+你可以通过   [Maven](http://maven.apache.org/) 或者 [Gradle](http://www.gradle.org/) 来构建你的应用。Maven 相对 Gradle 更稳定、更成熟。而 Gradle 更灵活，更容易扩展。
 
-You can build your generated Java application either with [Maven](http://maven.apache.org/) or [Gradle](http://www.gradle.org/). Maven is more stable and more mature. Gradle is more flexible, easier to extend, and more hype.
 
-### Would you like to use the LibSass stylesheet preprocessor for your CSS?
+### 你想使用 LibSass 来预处理你的 CSS 嘛？
 
-[Node-sass](https://www.npmjs.com/package/node-sass) a great solution to simplify designing CSS. To be used efficiently, you will need to run a [Gulp](http://www.gulpjs.com) server, which will be configured automatically.
+[Node-sass](https://www.npmjs.com/package/node-sass) 是处理 CSS 的一个很好的方案，你需要运行一个 [Gulp](http://www.gulpjs.com) 服务来自动配置它。 
 
-### Would you like to enable translation support with Angular Translate?
+### 你想通过 Angular Translate 来支持多语言嘛？
+默认情况下 JHipster 提供l 优秀的国际化的支持，无论是在客户端与 [Angular Translate](https://angular-translate.github.io/) 和在服务器端。但是国际化增加系统开销，管理起来会有些复杂，所以你可以选择不安装这个功能。
 
-By default JHipster provides excellent internationalization support, both on the client side with [Angular Translate](https://angular-translate.github.io/) and on the server side. However, internationalization adds a little overhead, and is a little bit more complex to manage, so you can choose not to install this feature.
+### 你想使用那个测试框架？
+默认情况下 JHipster 提供 java 单元/集成测试（使用Spring JUnit支持）和 JavaScript 单元测试（使用Karma.js）。这也是一个可选项。 
 
-### Which testing frameworks would you like to use?
+*   使用 Gatling 进行性能测试。
+*   使用 Cucumber 模拟用户行为
+*   使用 Protractor 对 AngularJS 进行集成测试
 
-By default JHipster provide Java unit/integration testing (using Spring's JUnit support) and JavaScript unit testing (using Karma.js). As an option, you can also add support for:
+你可以在这里看到更多信息  ["Running tests" guide]({{ site.url }}/running-tests/)。
 
-*   Performance tests using Gatling
-*   Behaviour tests using Cucumber
-*   AngularJS integration tests with Protractor
+## <a name="3"></a> 命令选项
 
-You can find more information on our ["Running tests" guide]({{ site.url }}/running-tests/).
+你也可以用一些可选的命令来运行 JHipster。这些选项可参考  `JHipster --help` :
 
-## <a name="3"></a> Command-line options
 
-You can also run JHipster with some optional command-line options. Reference for those options can be found by typing `yo jhipster --help`.
+以下是可选项：
 
-Here are the options you can pass:
-
-* `--help` - Print the generator's options and usage
-* `--skip-cache` - Do not remember prompt answers (Default: false)
-* `--skip-install` - Do not automatically install dependencies (Default: false)
-* `--skip-client` - Skip the client-side application generation, so you only have the Spring Boot back-end code generated (Default: false). This is same as running server sub-generator with `yo jhipster:server`.
-* `--skip-server` - Skip the server-side application generation, so you only have the AngularJS front-end code generated (Default: false). This is same as running client sub-generator with `yo jhipster:client`.
-* `--skip-user-management` - Skip the user management generation, both on the back-end and on the front-end (Default: false)
-* `--i18n` - Disable or enable i18n when skipping client side generation, has no effect otherwise (Default: true)
-* `--with-entities` - Regenerate the existing entities if they were already generated (using their configuration in the `.jhipster` folder) (Default: false)
-* `--check-install` - Check your installation is correct (Default: true)
+* `--help` - 查看生成器的选项和用法 。
+* `--skip-cache` - 不记住你之前的回答 （默认: false）。
+* `--skip-install` - 不自动安装依赖 （默认: false）。
+* `--skip-client` - 不生成客户端代码 （默认: false）。这和运行 `yo jhipster:server` 效果一样。
+* `--skip-server` - 不生成服务端代码 （默认: false）。这和运行 `yo jhipster:client` 效果一样。
+* `--skip-user-management` - 跳过生成前后端用户管理相关代码 （默认: false）
+* `--i18n` - 禁用或允许客户端 i18n 国际化支持。（默认: true）。
+* `--with-entities` - 重新生成现有的实体如果他们已经存在。（using their configuration in the `.jhipster` folder） （默认: false）
+* `--check-install` - 检查你的安装是否正确（默认: true）。
 
 ## <a name="4"></a> Tips
+如果你是一个高级用户，你可以运行我们的客户端和服务器子生成器 `yo jhipster:client --[options]` 和 `yo jhipster:server --[options]`。你可以通过在加上 `--help` 来查看所有选项。
 
-If you are an advanced user you can use our client and server sub-generators by running `yo jhipster:client --[options]` and `yo jhipster:server --[options]`.
-Run the above sub-generators with `--help` flag to view all the options that can be passed.
-
-You can also use the Yeoman command-line options, like `--force` to automatically overwrite existing files. So if you want to regenerate your whole application, including its entities, you can run `yo jhipster --force --with-entities`.
+你也可以使用 Yeoman 的命令行选项，比如 `--force` 去自动覆盖已有文件。如果你想重新生成整个应用，包括它的实体，你可以运行 `yo jhipster --force --with-entities`。
