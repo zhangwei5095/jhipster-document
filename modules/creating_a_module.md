@@ -12,11 +12,11 @@ sitemap:
 
 # <i class="fa fa-cube"></i> 创建一个模块
 
-JHipster模块是一个[Yeoman](http://yeoman.io/authoring/composability.html)生成器，是一个继承了一些JHipster的公共函数特性的JHipster子生成器。
+JHipster 的一个模块就是一个 [Yeoman](http://yeoman.io/authoring/composability.html)生成器，它继承了 JHipster 一些公共函数。
 
-JHipster模块在[JHipster市场]({{ site.url }}/modules/marketplace/)的列表.
+JHipster 现有的一些模块在 [JHipster 市场]({{ site.url }}/modules/marketplace/)的列表.
 
-这允许创建第三方生成器像标准JHipster子生成器那样访问JHipster变量和函数。第三方生成器通过Hook机制在执行应用和实体生成前后调用。
+这允许创建第三方生成器像标准 JHipster 子生成器那样访问JHipster变量和函数。第三方生成器通过 Hook 机制在执行应用和实体生成前后调用。
 
 ## 示例（Example）
 
@@ -24,15 +24,17 @@ JHipster模块在[JHipster市场]({{ site.url }}/modules/marketplace/)的列表.
 
 这是一个展示如何在你自己的生成器中使用JHipster函数和变量场景的例子。
 
-此外，你还可以使用[JHipster module generator](https://github.com/jhipster/generator-jhipster-module)来帮你初始化你的模块。
+此外，你还可以使用 [JHipster module generator](https://github.com/jhipster/generator-jhipster-module) 来帮你初始化你的模块。
 
 ## JHipster模块的基本规则（Basic rules for a JHipster module）
 
 一个JHipster模块包括：
 
-- 是一个NPM包，也是一个Yeoman生成器。
-- 遵循Yeoman的扩展规则列表[http://yeoman.io/generators/](http://yeoman.io/generators/)安装，使用“yo”命令更新，它必须包含两个关键词"yeoman-generator"和"jhipster-module"，而不是使用“generator-jhipster-”前缀代替"yeoman-generator"中的“generator-”前缀关键词.
-- JHipster模块注册作为一个钩子，在生成器正在关联时不应调用`process.exit`。
+- 是一个 NPM 包，也是一个 Yeoman 生成器。
+
+- 遵循 Yeoman 的扩展规则列表[http://yeoman.io/generators/](http://yeoman.io/generators/)安装，使用 "yo" 命令更新，它必须包含两个关键词 : yeoman-generator 和 jhipster-module，而不是使用“generator-jhipster-”前缀代替"yeoman-generator"中的“generator-”前缀关键词。
+
+- JHipster 模块注册作为一个钩子，在生成器正在关联时不应调用 `process.exit`。
 
 ## 兼容性(Composability)
 
