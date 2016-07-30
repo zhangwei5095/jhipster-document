@@ -1,8 +1,8 @@
-<h2 ng-hide="loaded"> Loading modules...</h2>
+<h2 ng-hide="loaded"> 模块加载中...</h2>
 <div ng-show="loaded">
-    <h2>Available modules ({((modules | filter:searchText).length)}/{(modules.length)})</h2>
+    <h2>可用模块 ({((modules | filter:searchText).length)}/{(modules.length)})</h2>
     <div class="form-group search-form ng-scope">
-        <input class="form-control search-field" ng-model="searchText" placeholder="Filter by module name or keyword" id="search-field">
+        <input class="form-control search-field" ng-model="searchText" placeholder="输入模块名称或关键字查找" id="search-field">
         <label class="fa fa-search inline-search" for="search-field"></label>
     </div>
     <div class="row" ng-repeat="module in modules | filter:searchText | orderBy:'-downloads'">
@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <div class="card-title">
                         <div class="title"><a ng-click="details(module)" href="">{(module.name[0] | jhiModuleFilter)}</a><small> {(module.version[0])}</small></div>
-                        <div class="description">by <a ng-href="https://www.npmjs.com/~{(module.author.join(','))}" target="_blank">{(module.author.join(','))}</a> published on {(module.created[0] | date)}</div>
+                        <div class="description">由 <a ng-href="https://www.npmjs.com/~{(module.author.join(','))}" target="_blank">{(module.author.join(','))}</a> 于 {(module.created[0] | date)} 发布</div>
                         <div class="description">{(module.description.join(','))}</div>
                     </div>
                     <div class="pull-right card-action">
@@ -22,9 +22,9 @@
                     <div class="clear-both"></div>
                 </div>
                 <div class="card-footer">
-                    <a type="button" class="btn btn-info" ng-click="details(module)">Details</a>
-                    <a type="button" class="btn btn-default" ng-href="{(module.homepage[0])}">Home page</a>
-                    {(module.downloads)} downloads last month.
+                    <a type="button" class="btn btn-info" ng-click="details(module)">详情</a>
+                    <a type="button" class="btn btn-default" ng-href="{(module.homepage[0])}">主页</a>
+                    月下载量 {(module.downloads)}
                     <div class="pull-right hidden-xs hidden-sm">
                         <span class="label label-default keyword" ng-repeat="keyword in module.keywords">{( keyword )}</span>
                     </div>
