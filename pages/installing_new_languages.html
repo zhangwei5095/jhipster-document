@@ -9,24 +9,24 @@ sitemap:
     lastmod: 2014-12-10T00:00:00-00:00
 ---
 
-<h1><i class="fa fa-flag"></i> Internationalization</h1>
+<h1><i class="fa fa-flag"></i> 国际化</h1>
 
-<h2>Introduction</h2>
+<h2>介绍</h2>
 <p>
-  During the generation of a new project you will be asked whether or not you want to enable internationalization support.
+  在生成项目的时候，你会被问到是否需要国际化的支持。 
 </p>
 <p>
-  If enabling it you will need to select the native language of your application.
-  After that you can choose the additional languages you would like to install.
-  If you don't want to support any additional languages from start you can always add languages later when needed by running the language sub-generator.
+如果启用它，你需要先选择你的本地的语言作为默认语言，
+之后，你可以选择你想安装的其他语言。
+如果你不想从一开始就支持任何额外的语言，你可以在需要的时候通过运行语言子生成器来添加语言。
 </p>
 <p>
-  If you are sure you will never translate this application into another language you should not enable the internationalization.
+ 如果你确定你永远不会把这个应用程序转换成另一种语言，你一个选择不使用国际化。
 </p>
 
-<h2>Supported languages</h2>
+<h2>支持的语言s</h2>
 
-<p>These are the currently supported languages</p>
+<p>这些都是当前支持的语言</p>
 
 <p>
   <ul>
@@ -57,13 +57,14 @@ sitemap:
   </ul>
 </p>
 
-<p><code>Does JHipster not support your language? Please help us with a PR!</code></p>
 
 
-<h2>How to add languages after project generation?</h2>
+<h2>
+How to add languages after project generation?
+如何在项目生成后添加语言？</h2>
 
 <p>
-  To do this you can run the languages sub-generator with:
+  你可以使用 languages 子生成器:
 </p>
 <p>
   <code>
@@ -74,20 +75,20 @@ sitemap:
   <img src="{{ site.url }}/images/install_new_languages.png" width="400"/>
 </p>
 <p>
-    Note that you will need to regenerate your entities if you would like to have them translated in the language you just added.
+  请注意，你需要重新生成你的实体，如果你想把它们翻译成你刚才添加的语言. 
 </p>
 
-<h2>How to add a new language that is not supported?</h2>
+<h2>如何添加不支持的新语言？</h2>
 <p>
-  All languages are saved in the folder <code>src/main/webapp/i18n</code> (client side) and <code>src/main/resources/i18n</code> (server side)
+  所有的语言都存放在<code>src/main/webapp/i18n</code> (客户端) and <code>src/main/resources/i18n</code> (服务端)
 </p>
 <p>
-  Here are the steps to install a new language called <code>new_lang</code>:
+  这里是安装一个新的语言的步骤 <code>new_lang</code>:
   <ol>
-    <li>Duplicate the <code>src/main/webapp/i18/en</code> folder to <code>src/main/webapp/i18/new_lang</code> (this is where all the front-end translations are stored)</li>
-    <li>Translate all files under the folder <code>src/main/webapp/i18/new_lang</code></li>
+    <li>复制  <code>src/main/webapp/i18/en</code> 文件后重命名为 <code>src/main/webapp/i18/new_lang</code> (这是前端多语言存放的地方)</li>
+    <li>翻译在文件夹下所有的文件 <code>src/main/webapp/i18/new_lang</code>文件夹下所有的文件</li>
     <li>
-      <p>Add the languege code <code>new_lang</code> to the <code>LANGUAGES</code> constant defined in <code>src/main/webapp/app/components/language/language.constants.js</code>
+      <p>添加语种 <code>new_lang</code> 在 <code>LANGUAGES</code> 的 constant 定义 <code>src/main/webapp/app/components/language/language.constants.js</code>
       <pre><code>.constant('LANGUAGES', [
     'en',
     'fr',
@@ -95,10 +96,10 @@ sitemap:
     // jhipster-needle-i18n-language-constant - JHipster will add/remove languages in this array
 ]</code></pre>
     </li>
-    <li>In the <code>src/main/resources/i18n</code> folder, copy the <code>messages_en.properties</code> file to <code>messages_new_lang.properties</code> (this is where the server-side translations are stored)</li>
-    <li>Translate all keys in the <code>messages_new_lang.properties</code> file</li>
+    <li>在 <code>src/main/resources/i18n</code> 文件夹中，复制  <code>messages_en.properties</code> 文件到 <code>messages_new_lang.properties</code> (这是服务端多语言存放的地方)</li>
+    <li>在<code>messages_new_lang.properties</code> 文件中，翻译所有的 key  对应的值</li>
     <li>
-      <p>Add the new language's name in the function of <code>filter('findLanguageFromKey')</code> in the <code>src/main/webapp/app/components/language/language.filter.js</code> file</p>
+      <p>在 <code>src/main/webapp/app/components/language/language.filter.js</code> 文件下的<code>filter('findLanguageFromKey')</code>函数中添加新语言的名字</p>
       <pre><code>function findLanguageFromKeyFilter(lang) {
     return {
         'ca': 'Català',
@@ -132,15 +133,15 @@ sitemap:
   </ol>
 </p>
 <p>
-  The new language <code>new_lang</code> is now available in the language menu, and it is available both in the front-end AngularJS application and in the back-end Spring application.
+  新语言<code>new_lang</code>  在语言的菜单中了，并且适用于前后端。 
 </p>
 
-<h2>How to remove an existing language?</h2>
+<h2>如何移除一个已经存在的 语言</h2>
 <p>
-    Here are the steps to remove a language called <code>old_lang</code>:
+    下面是删除一个语言的步骤 <code>old_lang</code>:
     <ol>
-        <li>Remove the language folder from <code>src/main/webapp/i18/old_lang</code></li>
-        <li>Remove the constant entry in <code>src/main/webapp/app/components/language/language.constants.js</code></li>
-        <li>Remove the <code>src/main/resources/i18n/messages_old_lang.properties</code> file</li>
+        <li>从<code>src/main/webapp/i18/old_lang</code> 文件删除你的语言</li>
+        <li> 在<code>src/main/webapp/app/components/language/language.constants.js</code> 的 constant  中删除你的语言</li>
+        <li>删除 <code>src/main/resources/i18n/messages_old_lang.properties</code> 文件</li>
     </ol>
 </p>
