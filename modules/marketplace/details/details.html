@@ -1,36 +1,35 @@
 
 <button type="submit"
         ng-click="list()"
-        class="btn btn-info btn-sm">Back to modules list</button>
+        class="btn btn-info btn-sm">返回模块列表</button>
 
 <h2>{(module.name[0] | jhiModuleFilter)}</h2>
 
-<i><p>by <a href="{(module.npminfo.author.url)}" target="_blank">{(module.npminfo.author.name)}</a>(<a href="https://www.npmjs.com/~{(module.npminfo._npmUser.name)}" target="_blank">{(module.npminfo._npmUser.name)}</a>)</i>
+<i><p>作者 <a href="{(module.npminfo.author.url)}" target="_blank">{(module.npminfo.author.name)}</a>(<a href="https://www.npmjs.com/~{(module.npminfo._npmUser.name)}" target="_blank">{(module.npminfo._npmUser.name)}</a>)</i>
 <p>
-    Latest version: {(module.npminfo.version)}
+    最新版本: {(module.npminfo.version)}
 </p>
 <p ng-if="!readmeFile">
 {(module.npminfo.description)}
 </p>
 
-<h3>JHipster version compatibility</h3>
+<h3>JHipster 版本兼容性</h3>
 <p>
-    This module works with JHipster version: <b>{(module.npminfo.dependencies['generator-jhipster'])}</b>
+    这个模块适用的 JHipster 版本为: <b>{(module.npminfo.dependencies['generator-jhipster'])}</b>
 </p>
 
-<h3>Links</h3>
+<h3>相关连接</h3>
 <ul>
-    <li><a href="{(module.npminfo.homepage)}" target="_blank">Project URL</a></li>
-    <li><a href="https://www.npmjs.com/package/{(npmPackageName)}" target="_blank">NPM package page</a></li>
+    <li><a href="{(module.npminfo.homepage)}" target="_blank">项目 URL</a></li>
+    <li><a href="https://www.npmjs.com/package/{(npmPackageName)}" target="_blank">NPM 主页</a></li>
 </ul>
 <div ng-if="!readmeFile">
-	<h3>How to install</h3>
+	<h3>如何安装</h3>
 	<pre>npm install -g {(npmPackageName)}</pre>
 </div>
 <hr>
 <div btf-markdown="readmeFile"></div>
 <hr>
-<h3>Downloads for last month</h3>
+<h3>月下载量统计</h3>
 
 <div id="chart"></div>
-
