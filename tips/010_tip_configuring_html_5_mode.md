@@ -6,25 +6,24 @@ priority: 0.5
 lastmod: 2016-03-07T23:23:00-00:00
 ---
 
-# Configuring HTML 5 mode
+# 配置HTML5模式的URL
 
-__Tip submitted by [@brevleq](https://github.com/brevleq) and updated by [@wmarques](https://github.com/wmarques)__
+你可能注意到,AngularJS在URLs里使用了"#".HTML5Mode的AngularJS将"#"从URLs里去掉了.
 
-As you may noticed, AngularJS uses a "#" in it's urls. HTML5Mode of AngularJS removes these "#" from URL.
+## 激活HTML5 URLs模式
 
-## Activate HTML 5 Mode
-
-Open the `app.js` file and add this line in `config` method:
+打开 `app.js` 文件在 `config`方法里增加下面这行:
 
     $locationProvider.html5Mode({ enabled: true, requireBase: true });
 
-Then open `index.html` and add this line in `head` tag:
+然后打开 `index.html` 在 `head` 里增加这行标签:
 
     <base href="/">
 
-## Redirection filter     
+## 重定向过滤器     
 
-Now, to have relative paths links working correctly (ex. activation link sent to user e-mail) we will create a controller to forward the URI to index.html:
+
+现在为了让所有相关的链接都正常工作(例如:激活链接,激活后发送给用户邮件)我们将创建一个  `controller` 将转发定位到index.html
 
     @Controller
     public class AngularJsForwardController {
@@ -34,16 +33,16 @@ Now, to have relative paths links working correctly (ex. activation link sent to
         }
     }
 
-Please note that this can cause conflicts with [Spring actuators URLs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html).
+请注意这可能会导致和 [Spring actuators URLs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html)的冲突.
 
-That's why you have to edit urls of the `metric.js` and `health.js`. First, open `webapp\app\admin\health\health.js` and change:
+这就是为什么你需要先更改 `metric.js` 和 `health.js`,打开 `webapp\app\admin\health\health.js` 然后更改:
 
     url: '/health' -> url: '/apphealth'
 
-Then do the same with `webapp\app\admin\metrics\metrics.js`:
+`webapp\app\admin\metrics\metrics.js`同上操作:
 
     url: '/metrics' -> url: '/appmetrics'
 
-Finally, to make the home link in the navigation bar work, open `webapp\app\layouts\navbar\navbar.html` and change:
+最后为了让在导航上的首页链接正常工作,打开`webapp\app\layouts\navbar\navbar.html` 然后更改:
 
     <a class="navbar-brand" href="#/"> -> <a class="navbar-brand" href="/">
