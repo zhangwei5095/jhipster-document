@@ -9,23 +9,20 @@ sitemap:
     lastmod: 2015-06-08T18:40:00-00:00
 ---
 
-# <i class="fa fa-archive"></i> Using Oracle
+# <i class="fa fa-archive"></i> Using Oracle使用Oracle
 
-When using JPA, you have the option to use the Oracle database.
+使用JPA时，你可以选择使用Oracle数据库.
 
-As Oracle is a proprietary database, we cannot give it the same level of support that we do for our other options:
+由于Oracle是有专利的数据库，因此我们无法为此提供和其他数据库同等的支持：
 
-- Its driver is proprietary, so we cannot bundle it with JHipster
-- We cannot give it the same level of test, as it is not available on Mac OS X (the final JHipster builds and tests are made on a Macbook Pro)
+- 它的驱动也是专有的，因为我们无法把它和JHipster打包在一起。
+- 我们也无法为此提供同等级别的测试，因为它无法在Mac OS X上使用（最终的JHipster的构建和测试都是在Macbook Pro上完成的）。
+所以，当你在JHipster使用Oracle的时候，你需要手动的安装Oracle JDBC的驱动：
+- 从Oracle官网下载驱动（ojdbc7.jar for Java 8）
+- 把下载好的驱动（ojdbc7.jar）复制到你的应用下的 `lib/oracle/ojdbc/7/` 文件夹下。
+- 你需要重命名一下驱动，把`ojdbc7.jar`重命名为`ojdbc-7.jar`，因为这样才能符合Maven的命名规则。
 
-When using Oracle with JHipster, you will need to install the Oracle JDBC driver manually:
-
-- Download the driver (ojdbc7.jar for Java 8) from the Oracle website
-- Copy it to your application's `lib/oracle/ojdbc/7/` folder
-- You will need to rename your driver, from `ojdbc7.jar` to `ojdbc-7.jar`, in order to follow Maven's naming conventions.
-
-When using Oracle with JHipster, the following limitations will be applicable
-
-- Entity names cannot be more than 26 characters, this is due to Oracle's 30 character limitation for object names, and we reserve 4 characters to generate primary key sequence for the generated tables.
-- Entity field names cannot be more than 30 characters
-- Oracle reserved keywords cannot be used as Entity names or Field names.
+当你在JHipster使用Oracle的时候，会有以下要求：
+- 实体的名称不能超过26个字符，这是因为Oracle对象的命名限制为30个字符的，还有，我们将预留剩下的4个字符，用于为已经生成的表创建主键的序列。
+- 实体的属性名称也不能超过30个字符。
+- Oracle的保留关键字不能用作实体和属性的名称。
